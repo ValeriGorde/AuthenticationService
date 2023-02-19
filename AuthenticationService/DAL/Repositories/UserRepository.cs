@@ -1,4 +1,6 @@
-﻿namespace AuthenticationService.Repositories
+﻿using AuthenticationService.BLL.Models;
+
+namespace AuthenticationService.Repositories
 {
     public class UserRepository : IUserRepository
     {

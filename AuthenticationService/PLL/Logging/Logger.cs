@@ -1,11 +1,11 @@
-﻿namespace AuthenticationService
+﻿namespace AuthenticationService.PLL.Logging
 {
-    public class Logger: ILogger
+    public class Logger : ILogger
     {
         private ReaderWriterLockSlim lock_ = new ReaderWriterLockSlim();
         private string logDirectory { get; set; }
 
-        public Logger() 
+        public Logger()
         {
             logDirectory = AppDomain.CurrentDomain.BaseDirectory + @"/_logs/" + DateTime.Now.ToString("dd-MM-yy HH-mm-ss") + @"/";
 
@@ -13,35 +13,35 @@
                 Directory.CreateDirectory(logDirectory);
         }
 
-        public void WriteEvent(string eventMessage) 
+        public void WriteEvent(string eventMessage)
         {
             lock_.EnterWriteLock();
 
-            try 
+            try
             {
-                using (StreamWriter writer = new StreamWriter(logDirectory + "events.txt", append: true)) 
+                using (StreamWriter writer = new StreamWriter(logDirectory + "events.txt", append: true))
                 {
                     writer.WriteLine(eventMessage);
                 }
             }
-            finally 
+            finally
             {
                 lock_.ExitWriteLock();
             }
         }
 
-        public void WriteError(string errorMessage) 
+        public void WriteError(string errorMessage)
         {
             lock_.EnterWriteLock();
 
-            try 
+            try
             {
-                using(StreamWriter writer = new StreamWriter(logDirectory + "errors.txt", append: true)) 
+                using (StreamWriter writer = new StreamWriter(logDirectory + "errors.txt", append: true))
                 {
                     writer.WriteLine(errorMessage);
                 }
             }
-            finally 
+            finally
             {
                 lock_.ExitWriteLock();
             }

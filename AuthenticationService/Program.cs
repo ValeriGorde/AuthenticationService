@@ -1,5 +1,9 @@
+using AuthenticationService.PLL.Logging;
+using AuthenticationService.PLL.MappingProfiles;
+using AuthenticationService.PLL.Middlewares;
 using AuthenticationService.Repositories;
 using AutoMapper;
+using ILogger = AuthenticationService.PLL.Logging.ILogger;
 
 namespace AuthenticationService
 {
@@ -17,6 +21,7 @@ namespace AuthenticationService
             {
                 u.AddProfile(new MappingProfile());
             });
+
             IMapper mapper = mapperConfig.CreateMapper();
             builder.Services.AddSingleton(mapper);
 

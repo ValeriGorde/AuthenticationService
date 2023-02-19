@@ -1,8 +1,8 @@
-﻿namespace AuthenticationService
+﻿namespace AuthenticationService.PLL.Logging
 {
     public interface ILogger
     {
         void WriteEvent(string eventMessage);
-        void WriteError(string error);  
+        void WriteError(string error);
     }
 }

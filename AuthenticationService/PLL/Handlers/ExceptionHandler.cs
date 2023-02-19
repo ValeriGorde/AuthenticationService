@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AuthenticationService.PLL.Exceptions;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace AuthenticationService
+namespace AuthenticationService.PLL.Handlers
 {
     public class ExceptionHandler : ActionFilterAttribute, IExceptionFilter
     {
@@ -9,7 +10,7 @@ namespace AuthenticationService
         {
             string message = "Произошла непредвиденная ошибка. Администрация сайта уже решает проблему";
 
-            if(context.Exception is CustomException) 
+            if (context.Exception is CustomException)
             {
                 message = context.Exception.Message;
             }

@@ -1,4 +1,4 @@
-﻿namespace AuthenticationService
+﻿namespace AuthenticationService.PLL.Middlewares
 {
     public static class LogMiddlewareExtensions
     {

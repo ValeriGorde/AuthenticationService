@@ -1,4 +1,6 @@
-﻿namespace AuthenticationService
+﻿using ILogger = AuthenticationService.PLL.Logging.ILogger;
+
+namespace AuthenticationService.PLL.Middlewares
 {
     public class LogMiddleware
     {
@@ -13,6 +15,7 @@
 
         public async Task Invoke(HttpContext httpContext)
         {
+            _logger.WriteEvent("IP-адрес клиента: " + httpContext.Connection.RemoteIpAddress.ToString());
             await _next(httpContext);
         }
     }

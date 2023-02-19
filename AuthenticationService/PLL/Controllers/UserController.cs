@@ -1,4 +1,7 @@
-﻿using AuthenticationService.Repositories;
+﻿using AuthenticationService.BLL.Models;
+using AuthenticationService.BLL.ViewModels;
+using AuthenticationService.PLL.Handlers;
+using AuthenticationService.Repositories;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -6,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Authentication;
 using System.Security.Claims;
+using ILogger = AuthenticationService.PLL.Logging.ILogger;
 
 namespace AuthenticationService.Controllers
 {
@@ -23,23 +27,6 @@ namespace AuthenticationService.Controllers
             _logger = logger;
             _mapper = mapper;
             _userRepository = userRepository;
-
-            logger.WriteEvent("Сообщение о событие в программе");
-            logger.WriteError("Сообщение об ошибке в программе");
-        }
-
-        [HttpGet]
-        public User GetUser()
-        {
-            return new User()
-            {
-                Id = Guid.NewGuid(),
-                FirstName = "Valeri",
-                LastName = "Gordeeva",
-                Login = "gigizzz",
-                Password = "gigi12345",
-                Email = "gigi.gorde@mail.ru"
-            };
         }
 
         [Authorize(Roles = "Администратор")]

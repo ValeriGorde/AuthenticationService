@@ -1,21 +1,22 @@
 ﻿using System.Net.Mail;
+using AuthenticationService.BLL.Models;
 
-namespace AuthenticationService
+namespace AuthenticationService.BLL.ViewModels
 {
     public class UserViewModel
     {
-        public UserViewModel(User user) 
+        public UserViewModel(User user)
         {
             FullName = GetFullName(user.FirstName, user.LastName);
             FromRussia = IsFromRussia(user.Email);
         }
 
-        public  string GetFullName(string firstName, string lastName) 
+        public string GetFullName(string firstName, string lastName)
         {
-            return String.Concat(firstName + " " + lastName);            
+            return string.Concat(firstName + " " + lastName);
         }
 
-        public bool IsFromRussia(string email) 
+        public bool IsFromRussia(string email)
         {
             MailAddress emailAddress = new MailAddress(email);
             if (emailAddress.Host.Contains(".ru"))
